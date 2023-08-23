@@ -4,22 +4,28 @@ import com.SK.LetsTravel.Enums.City;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.*;
+import java.util.*;
 
 @Entity
-@Table
-@Data
+@Table(name = "routes")
+@Data //Getter Setter ToString RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Route {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer routeId;
 
+    @Enumerated(value = EnumType.STRING)
     private City fromCity;
 
+    @Enumerated(value = EnumType.STRING)
     private City toCity;
 
-    private String listOfStopsInBetween;
+    private String stopsInBetween;
 
-    private LocalDate date;
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
+    private List<Transport> transportList = new ArrayList<>();
 }
