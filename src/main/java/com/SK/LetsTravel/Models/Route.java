@@ -12,6 +12,7 @@ import java.util.*;
 @Data //Getter Setter ToString RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Route {
 
     @Id
