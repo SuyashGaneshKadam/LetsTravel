@@ -1,6 +1,6 @@
 package com.SK.LetsTravel.Controllers;
 
-import com.SK.LetsTravel.RequestDtos.AddTransportRequestDto;
+import com.SK.LetsTravel.RequestDTOs.AddTransport;
 import com.SK.LetsTravel.Services.TransportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,12 @@ public class TransportController {
     private TransportService transportService;
 
     @PostMapping("/addTransport")
-    public ResponseEntity addTransport(@RequestBody AddTransportRequestDto requestDto){
+    public ResponseEntity addTransport(@RequestBody AddTransport requestDto){
         try{
             return new ResponseEntity<>(transportService.addTransport(requestDto), HttpStatus.ACCEPTED);
         }
         catch (Exception e){
-            log.error("Unable to add Transport ", e.getMessage());
+            log.error("Unable to add Transport : ", e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }

@@ -3,15 +3,10 @@ package com.SK.LetsTravel.Models;
 import com.SK.LetsTravel.Enums.ModeOfTransport;
 import com.SK.LetsTravel.Enums.SeatType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.*;
+import java.util.*;
 
 @Entity
 @Table
@@ -32,7 +27,9 @@ public class Transport {
 
     private LocalTime startTime;
 
-    private Double journeyTime;
+    private Double journeyTime; //Duration in hours - 1.5
+
+    private String companyName;
 
     @ManyToOne
     @JoinColumn

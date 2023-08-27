@@ -1,5 +1,6 @@
 package com.SK.LetsTravel.Models;
 
+import com.SK.LetsTravel.Enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,9 @@ public class User {
     private String emailId;
 
     private Integer age;
+
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Booking> bookingList = new ArrayList<>();

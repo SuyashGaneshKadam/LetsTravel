@@ -1,12 +1,25 @@
 package com.SK.LetsTravel.Enums;
 
 public enum City {
-    Pune,
-    Delhi,
-    Hyderabad,
-    Bangalore,
-    Mumbai,
-    Chennai,
     Agra,
-    Amritsar
+    Ahmedabad,
+    Aligarh,
+    Amritsar,
+    Bangalore,
+    Bengaluru,
+    Chennai,
+    Delhi,
+    Jaipur,
+    Hyderabad,
+    Kanpur,
+    Kolkata,
+    Lucknow,
+    Mumbai,
+    Mysuru,
+    Nagpur,
+    Panaji,
+    Patna,
+    Pune,
+    Shimla,
+    Surat
 }

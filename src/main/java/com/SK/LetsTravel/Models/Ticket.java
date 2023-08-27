@@ -19,13 +19,13 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer tickedId;
 
-    private String routeDetails;
+    private String routeDetails; // From City TO To City - Pune TO Mumbai
 
     private LocalDate journeyDate;
 
     private LocalTime startTime;
 
-    private String seatNos; //Comma separated values : 1A,1B,2A
+    private String seatNos; //Comma separated values : E1,E8,B4
 
     private Integer totalCostPaid;
 

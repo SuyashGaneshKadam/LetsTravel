@@ -1,4 +1,4 @@
-package com.SK.LetsTravel.RequestDtos;
+package com.SK.LetsTravel.RequestDTOs;
 
 import com.SK.LetsTravel.Enums.ModeOfTransport;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddTransportRequestDto {
+public class AddTransport {
     private ModeOfTransport modeOfTransport;
 
     private LocalDate journeyDate;
@@ -21,4 +21,6 @@ public class AddTransportRequestDto {
     private Double journeyTime;
 
     private Integer routeId;
+
+    private String companyName;
 }

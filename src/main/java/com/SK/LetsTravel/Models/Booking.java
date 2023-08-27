@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "bookings")
-@Data
+@Table
+@Data                 //Getter Setter ToString RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 public class Booking {
@@ -18,11 +18,9 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bookingId;
 
-    private String seatNos;
+    private String seatNos; //Comma separated - E1,E2,B6
 
     private LocalDate journeyDate;
-
-    private Integer transportId;
 
     @ManyToOne
     @JoinColumn
