@@ -1,7 +1,6 @@
 package com.SK.LetsTravel.Controllers;
 
 import com.SK.LetsTravel.RequestDTOs.AddRoute;
-import com.SK.LetsTravel.RequestDTOs.SearchFlights;
 import com.SK.LetsTravel.Services.RouteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +22,6 @@ public class RouteController {
         }
         catch (Exception e){
             log.error("Unable to add Route : ", e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
-        }
-    }
-
-    @GetMapping("/searchFlights")
-    public ResponseEntity searchFlights(@RequestBody SearchFlights request){
-        try {
-            return new ResponseEntity(routeService.searchFlights(request),HttpStatus.FOUND);
-        }
-        catch (Exception e){
-            log.error("Unable to get the flight details : ", e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }

@@ -6,7 +6,6 @@ public enum City {
     Aligarh,
     Amritsar,
     Bangalore,
-    Bengaluru,
     Chennai,
     Delhi,
     Jaipur,

@@ -22,20 +22,4 @@ public class RouteService {
         routeRepository.save(route);
         return "Route has been added successfully";
     }
-
-    public List<SearchFlightsResult> searchFlights(SearchFlights request){
-        List<Route> routes = routeRepository.findRouteByFromCityAndToCityAndModeOfTransport(request.getFromCity(),request.getToCity(), ModeOfTransport.Flight);
-        List<SearchFlightsResult> resultList = new ArrayList<>();
-        for(Route route : routes){
-            List<Transport> transportList = route.getTransportList();
-            for (Transport transport : transportList){
-                if(request.getJourneyDate().equals(transport.getJourneyDate())){
-                    SearchFlightsResult object = TransportTransformer.convertEntityToSearchFlightResult(transport);
-                    object.setStopsInBetween(route.getStopsInBetween());
-                    resultList.add(object);
-                }
-            }
-        }
-        return resultList;
-    }
 }

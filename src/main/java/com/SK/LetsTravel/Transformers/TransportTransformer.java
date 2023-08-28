@@ -2,7 +2,6 @@ package com.SK.LetsTravel.Transformers;
 
 import com.SK.LetsTravel.Models.Transport;
 import com.SK.LetsTravel.RequestDTOs.AddTransport;
-import com.SK.LetsTravel.RequestDTOs.SearchFlights;
 import com.SK.LetsTravel.ResponseDTOs.SearchFlightsResult;
 
 public class TransportTransformer {
