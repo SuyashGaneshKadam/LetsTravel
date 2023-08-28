@@ -18,7 +18,7 @@ public class TransportController {
     @Autowired
     private TransportService transportService;
 
-    @PostMapping("/addTransport")
+    @PostMapping("/add")
     public ResponseEntity addTransport(@RequestBody AddTransport requestDto){
         try{
             return new ResponseEntity<>(transportService.addTransport(requestDto), HttpStatus.ACCEPTED);

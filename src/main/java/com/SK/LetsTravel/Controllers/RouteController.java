@@ -15,7 +15,7 @@ public class RouteController {
     @Autowired
     private RouteService routeService;
 
-    @PostMapping("/addRoute")
+    @PostMapping("/add")
     public ResponseEntity addRoute(@RequestBody AddRoute requestDto){
         try {
             return new ResponseEntity<>(routeService.addRoute(requestDto), HttpStatus.ACCEPTED);
