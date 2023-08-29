@@ -36,6 +36,7 @@ public class SeatService {
                     price(addFlightSeats.getPriceOfBusinessSeat()).transport(transport).build();
             transport.getSeatList().add(seat);
         }
+        transport.setTotalSeats(addFlightSeats.getNoOfEconomySeats() + addFlightSeats.getNoOfBusinessSeats());
         transportRepository.save(transport);
         return "Seats have been added successfully";
     }

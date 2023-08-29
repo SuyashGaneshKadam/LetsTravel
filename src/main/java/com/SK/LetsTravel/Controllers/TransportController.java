@@ -39,4 +39,15 @@ public class TransportController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }
+
+    @GetMapping("/getAvailableSeats")
+    public ResponseEntity getAvailableSeats(@RequestParam LocalDate journeyDate, @RequestParam Integer transportId){
+        try{
+            return new ResponseEntity<>(transportService.getAvailableSeats(journeyDate, transportId), HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error("Unable to get available seats : ", e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+    }
 }

@@ -20,6 +20,8 @@ public class Transport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer transportId;
 
+    private String companyName;
+
     @Enumerated(value = EnumType.STRING)
     private ModeOfTransport modeOfTransport;
 
@@ -29,7 +31,9 @@ public class Transport {
 
     private Double journeyTime; //Duration in hours - 1.5
 
-    private String companyName;
+    private String bookedSeatNos;
+
+    private Integer totalSeats;
 
     @ManyToOne
     @JoinColumn

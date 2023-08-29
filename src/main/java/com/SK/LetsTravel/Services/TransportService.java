@@ -1,11 +1,14 @@
 package com.SK.LetsTravel.Services;
 
+import com.SK.LetsTravel.CustomExceptions.AllSeatsBookedException;
 import com.SK.LetsTravel.CustomExceptions.RouteNotFoundException;
+import com.SK.LetsTravel.CustomExceptions.TransportNotFoundException;
 import com.SK.LetsTravel.Enums.City;
 import com.SK.LetsTravel.Enums.ModeOfTransport;
 import com.SK.LetsTravel.Models.*;
 import com.SK.LetsTravel.Repositories.*;
 import com.SK.LetsTravel.RequestDTOs.*;
+import com.SK.LetsTravel.ResponseDTOs.AvailableSeats;
 import com.SK.LetsTravel.ResponseDTOs.SearchFlightsResult;
 import com.SK.LetsTravel.Transformers.*;
 import lombok.extern.slf4j.Slf4j;
@@ -54,5 +57,26 @@ public class TransportService {
             }
         }
         return resultList;
+    }
+
+    public List<AvailableSeats> getAvailableSeats(LocalDate journeyDate, Integer transportId) throws Exception{
+        if(!transportRepository.existsById(transportId)){
+            throw new TransportNotFoundException("Invalid Transport ID");
+        }
+
+        Transport transport = transportRepository.findById(transportId).get();
+        List<Seat> seatList = transport.getSeatList();
+        String bookedSeatNos = transport.getBookedSeatNos();
+        List<AvailableSeats> availableSeatsList = new ArrayList<>();
+        if(bookedSeatNos != null && bookedSeatNos.length() == transport.getTotalSeats()){
+            throw new AllSeatsBookedException("All seats are booked of this flight");
+        }
+        for(Seat seat : seatList){
+            if(bookedSeatNos == null || bookedSeatNos.indexOf(seat.getSeatNo()) == -1){
+                AvailableSeats availableSeat = SeatTransformer.convertEntityToDto(seat);
+                availableSeatsList.add(availableSeat);
+            }
+        }
+        return availableSeatsList;
     }
 }
