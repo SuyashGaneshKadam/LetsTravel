@@ -11,7 +11,7 @@ public enum SeatType {
     Side_Upper,
     Side_Lower,
     //---------Bus---------
-    AC,
     Sleeper,
-    Window
+    Window,
+    AC
 }

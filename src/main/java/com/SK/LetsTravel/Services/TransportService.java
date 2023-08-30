@@ -69,7 +69,7 @@ public class TransportService {
         String bookedSeatNos = transport.getBookedSeatNos();
         List<AvailableSeats> availableSeatsList = new ArrayList<>();
         if(bookedSeatNos != null && bookedSeatNos.length() == transport.getTotalSeats()){
-            throw new AllSeatsBookedException("All seats are booked of this flight");
+            throw new AllSeatsBookedException("All seats are booked");
         }
         for(Seat seat : seatList){
             if(bookedSeatNos == null || bookedSeatNos.indexOf(seat.getSeatNo()) == -1){
