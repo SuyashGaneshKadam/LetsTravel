@@ -13,7 +13,6 @@ public class SeatService {
 
     @Autowired
     private SeatRepository seatRepository;
-
     @Autowired
     private TransportRepository transportRepository;
 

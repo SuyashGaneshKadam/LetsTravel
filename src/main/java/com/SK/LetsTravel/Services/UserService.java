@@ -32,7 +32,7 @@ public class UserService {
                 "Team LetsTravel";
 
         mailMessage.setSubject("Welcome to Lets Travel");
-        mailMessage.setFrom("letstravel741@gmail.com");
+        mailMessage.setFrom("letstravelbot@gmail.com");
         mailMessage.setTo(addUser.getEmailId());
         mailMessage.setText(body);
         emailSender.send(mailMessage);

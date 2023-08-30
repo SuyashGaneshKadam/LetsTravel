@@ -23,6 +23,8 @@ public class Ticket {
 
     private String routeDetails; // From City TO To City - Pune TO Mumbai
 
+    private String stopsInBetween;
+
     private LocalDate journeyDate;
 
     private LocalTime startTime;
