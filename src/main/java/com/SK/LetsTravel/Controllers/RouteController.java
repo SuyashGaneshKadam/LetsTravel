@@ -1,5 +1,6 @@
 package com.SK.LetsTravel.Controllers;
 
+import com.SK.LetsTravel.Enums.City;
 import com.SK.LetsTravel.RequestDTOs.AddRoute;
 import com.SK.LetsTravel.Services.RouteService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,17 @@ public class RouteController {
         }
         catch (Exception e){
             log.error("Unable to add Route : ", e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
+    @GetMapping("/findShortestDurationTransportAndCheapestTransport")
+    public ResponseEntity findCheapestTransport(@RequestParam City fromCity, @RequestParam City toCity){
+        try{
+            return new ResponseEntity<>(routeService.findCheapestTransport(fromCity,toCity), HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error("Some error occurred : ", e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }

@@ -9,4 +9,6 @@ import java.util.*;
 public interface RouteRepository extends JpaRepository<Route, Integer> {
 
     public List<Route> findRouteByFromCityAndToCityAndModeOfTransport(City fromCity, City toCity, ModeOfTransport modeOfTransport);
+
+    public List<Route> findRouteByFromCityAndToCity(City fromCity, City toCity);
 }
