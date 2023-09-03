@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookSeatsInFlight {
+public class BookTicket {
     private Integer userId;
     private Integer transportId;
     private String seatNos;

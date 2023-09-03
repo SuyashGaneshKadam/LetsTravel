@@ -1,12 +1,12 @@
 package com.SK.LetsTravel.Transformers;
 
 import com.SK.LetsTravel.Models.Booking;
-import com.SK.LetsTravel.RequestDTOs.BookSeatsInFlight;
+import com.SK.LetsTravel.RequestDTOs.BookTicket;
 
 public class BookingTransformer {
-    public static Booking convertDtoToEntity(BookSeatsInFlight bookSeatsInFlight){
-        Booking booking = Booking.builder().seatNos(bookSeatsInFlight.getSeatNos()).
-                journeyDate(bookSeatsInFlight.getJourneyDate()).build();
+    public static Booking convertDtoToEntity(BookTicket bookTicketInFlight){
+        Booking booking = Booking.builder().seatNos(bookTicketInFlight.getSeatNos()).
+                journeyDate(bookTicketInFlight.getJourneyDate()).build();
         return booking;
     }
 }

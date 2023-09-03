@@ -51,17 +51,6 @@ public class TransportController {
         }
     }
 
-    @PostMapping("/cancelTicket")
-    public ResponseEntity cancelTicket(@RequestParam Integer transportId, @RequestParam String seatNo){
-        try{
-            return new ResponseEntity<>(transportService.cancelTicket(transportId, seatNo), HttpStatus.OK);
-        }
-        catch (Exception e){
-            log.error("Some error occurred : ", e.getMessage());
-            return new ResponseEntity(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
-        }
-    }
-
     @GetMapping("/totalRevenueEarnedByCompanyInAGivenMonthAndYear")
     public ResponseEntity totalRevenueEarned(@RequestParam String companyName, @RequestParam Integer month, @RequestParam Integer year){
         try {

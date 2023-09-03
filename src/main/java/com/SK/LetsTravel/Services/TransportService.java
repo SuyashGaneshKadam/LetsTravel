@@ -76,64 +76,6 @@ public class TransportService {
         return availableSeatsList;
     }
 
-    public CancelTicket cancelTicket(Integer transportId, String seatNo) throws Exception{
-        if(!transportRepository.existsById(transportId)){
-            log.error("Transport ID entered is invalid");
-            throw new TransportNotFoundException("Invalid transport ID");
-        }
-        Transport transport = transportRepository.findById(transportId).get();
-        List<Seat> seatList = transport.getSeatList();
-        if(seatList == null || seatList.size() == 0){
-            log.error("Seat number is not valid");
-            throw new Exception("Invalid Seat number");
-        }
-        List<Booking> bookingList = transport.getBookingList();
-        if(bookingList == null || bookingList.size() == 0){
-            log.error("There are no bookings done for this transport");
-            throw new Exception("There are no bookings done");
-        }
-        Integer price = -1;
-        for(Seat seat : seatList){
-            if(seatNo.equals(seat.getSeatNo())){
-                price = seat.getPrice();
-                break;
-            }
-        }
-        if(price == -1){
-            log.error("Seat Number is not valid");
-            throw new Exception("Invalid Seat number");
-        }
-        if(!transport.getBookedSeatNos().contains(seatNo)){
-            log.error("There are no bookings done for this seat number");
-            throw new Exception("There are no bookings done for this Seat No");
-        }
-        else{
-            String[] seatNos = transport.getBookedSeatNos().split(",");
-            StringBuilder sb = new StringBuilder();
-            for(int i=0 ; i<seatNos.length ; i++){
-                if(seatNo.equals(seatNos[i])){
-                    continue;
-                }
-                sb.append(seatNos[i]);
-                if(i != seatNos.length - 1){
-                    sb.append(",");
-                }
-            }
-            transport.setBookedSeatNos(sb.toString());
-        }
-        Integer userId = -1;
-        String userName = "";
-        for(Booking booking : bookingList){
-            if(booking.getSeatNos().contains(seatNo)){
-                userId = booking.getUser().getUserId();
-                userName = booking.getUser().getName();
-            }
-        }
-        log.info("Modifications are done to the databases");
-        transportRepository.save(transport);
-        return new CancelTicket(userId,userName,price);
-    }
-
     public Integer totalRevenueEarned(String companyName, Integer month, Integer year) throws Exception{
         Transport transport = transportRepository.findTransportByCompanyName(companyName, month, year);
         if(transport == null){
