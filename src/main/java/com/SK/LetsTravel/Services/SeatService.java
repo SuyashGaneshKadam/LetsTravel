@@ -6,11 +6,13 @@ import com.SK.LetsTravel.Models.*;
 import com.SK.LetsTravel.Repositories.*;
 import com.SK.LetsTravel.RequestDTOs.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class SeatService {
-
     @Autowired
     private SeatRepository seatRepository;
     @Autowired
@@ -67,6 +69,38 @@ public class SeatService {
         }
         transport.setTotalSeats(addBusSeats.getNoOfWindowSeats() + addBusSeats.getNoOfACSeats() +
                 addBusSeats.getNoOfSleeperSeats());
+        transportRepository.save(transport);
+
+        return "Seats have been added successfully";
+    }
+
+    public String addTrainSeats(AddTrainSeats addTrainSeats) throws Exception{
+        if(!transportRepository.existsById(addTrainSeats.getTransportId())){
+            throw new TransportNotFoundException("Invalid Transport ID");
+        }
+        Transport transport = transportRepository.findById(addTrainSeats.getTransportId()).get();
+        if(transport.getModeOfTransport() != ModeOfTransport.Train){
+            throw new Exception("No Train is associated with the entered Transport ID");
+        }
+        for(int i=1 ; i<=addTrainSeats.getNoOfLowerSeats() ; i++){
+            Seat seat = Seat.builder().seatNo("L" + i).seatType(SeatType.Lower).
+                    price(addTrainSeats.getPriceOfLowerSeat()).transport(transport).build();
+            transport.getSeatList().add(seat);
+        }
+
+        for(int i=1 ; i<=addTrainSeats.getNoOfMiddleSeats() ; i++){
+            Seat seat = Seat.builder().seatNo("M" + i).seatType(SeatType.Middle).
+                    price(addTrainSeats.getPriceOfMiddleSeat()).transport(transport).build();
+            transport.getSeatList().add(seat);
+        }
+
+        for(int i=1 ; i<=addTrainSeats.getNoOfUpperSeats() ; i++){
+            Seat seat = Seat.builder().seatNo("U" + i).seatType(SeatType.Upper).
+                    price(addTrainSeats.getPriceOfUpperSeat()).transport(transport).build();
+            transport.getSeatList().add(seat);
+        }
+        transport.setTotalSeats(addTrainSeats.getNoOfLowerSeats() + addTrainSeats.getNoOfMiddleSeats() +
+                addTrainSeats.getNoOfUpperSeats());
         transportRepository.save(transport);
 
         return "Seats have been added successfully";

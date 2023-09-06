@@ -39,4 +39,15 @@ public class SeatController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }
+
+    @PostMapping("/addTrainSeats")
+    public ResponseEntity addTrainSeats(@RequestBody AddTrainSeats addTrainSeats){
+        try {
+            return new ResponseEntity<>(seatService.addTrainSeats(addTrainSeats), HttpStatus.ACCEPTED);
+        }
+        catch (Exception e){
+            log.error("Unable to add seats : ", e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+    }
 }
